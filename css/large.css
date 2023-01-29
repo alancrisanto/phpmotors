@@ -1,0 +1,32 @@
+/* 64em is also 1028px when basefont is 16px */
+@media only screen and (min-width: 64rem) {
+  * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+  }
+  
+  :root {
+    /* https://coolors.co/bababa-8d8d8d-a6cbeb-4c96d7-3a3a3a */
+    --light-gray: rgb(186, 186, 186);
+    --dark-grey: rgb(141, 141, 141);
+    --blue-baby: rgba(166,203,235,1);
+    --blue: rgb(0 71 133);
+    --black: rgb(58, 58, 58);
+    --white: rgb(255, 255, 255);
+    --font-family: 'Quantico', sans-serif;
+  }
+
+.main-hero-detail{
+  padding-left: 2rem;
+  /* font-size: 1rem; */
+}
+
+.main-hero img {
+  left: 2.5rem;
+}
+
+}

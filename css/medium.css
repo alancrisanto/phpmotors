@@ -1,0 +1,68 @@
+/* 35em is also 560px when basefont is 16px */
+@media only screen and (min-width: 35rem) {
+  * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+  }
+  
+  :root {
+    /* https://coolors.co/bababa-8d8d8d-a6cbeb-4c96d7-3a3a3a */
+    --light-gray: rgb(186, 186, 186);
+    --dark-grey: rgb(141, 141, 141);
+    --blue-baby: rgba(166,203,235,1);
+    --blue: rgb(0 71 133);
+    --black: rgb(58, 58, 58);
+    --white: rgb(255, 255, 255);
+    --font-family: 'Quantico', sans-serif;
+  }
+
+  html {
+    background-image: url(/phpmotors/images/site/small_check.jpg);
+    /* display: flex;
+    justify-content: center;
+    align-content: center; */
+  }
+  body{
+    max-width: 1100px;
+    background-color: var(--white);
+    border: 6px solid var(--blue);
+    border-radius: 10px;
+    margin: 0 auto;
+  }
+
+  nav .nav-ul {
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+  .main-hero{
+    height: 500px ;
+  }
+
+  @media screen and (min-width: 700px){
+
+    .main-hero-detail h3{
+      font-size: 1rem;
+    }
+
+    .main-hero img {
+      max-width: 150px;
+      position: absolute;
+      left: 1rem;
+      top: 32%;
+    }
+  }
+
+  @media screen and (min-width: 800px){
+    .main-container{
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+  }
+}

@@ -1,0 +1,166 @@
+/*----------- apply a natural box layout model to all elements --------------*/
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+}
+
+:root {
+  /* https://coolors.co/bababa-8d8d8d-a6cbeb-4c96d7-3a3a3a */
+  --light-gray: rgb(186, 186, 186);
+  --dark-grey: rgb(141, 141, 141);
+  --blue-baby: rgba(166,203,235,1);
+  --blue: rgb(0 71 133);
+  --black: rgb(58, 58, 58);
+  --white: rgb(255, 255, 255);
+  --font-family: 'Quantico', sans-serif;
+}
+
+body{
+  font-family: var(--font-family);
+}
+
+
+img {
+  max-width: 100%;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+}
+
+.header-img{
+  max-width: 150px;
+}
+
+nav {
+  background-color: var(--black);
+  padding: 0.8rem;
+}
+
+nav .nav-ul {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 0.5rem;
+}
+
+nav li{
+  list-style: none;
+}
+
+nav .nav-ul a {
+  color: var(--white);
+  font-size: 0.9rem;
+}
+
+nav .nav-ul a:hover {
+  background-color: var(--white);
+  color: var(--black);
+  padding: 0.7rem 0.5rem;
+  border: 1px solid var(--black);
+  border-radius: 8px;
+}
+
+.main-hero{
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  background-image: url(/phpmotors/images/delorean.jpg);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+  height: 300px;
+  position: relative;
+
+}
+
+.main-hero h1{
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.main-hero img {
+  max-width: 150px;
+  align-self: center;
+  position: absolute;
+  bottom: 0px;
+}
+
+.main-hero-detail h3{
+  color: var(--blue);
+  font-size: 0.7rem;
+  min-width: 90px;
+}
+
+.main-hero-info{
+  display: flex;
+}
+
+.main-review{
+  padding: 1rem;
+}
+
+.main-review ul {
+  padding-left: 2rem;
+  padding-top: 1rem;
+  line-height: 1.5rem;
+}
+
+.main-upgrades {
+  padding: 1rem;
+}
+
+.main-500 {
+  margin: 0 1rem;
+}
+.upgrades-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  align-content: center;
+}
+
+.upgrades-detail {
+  text-align: center;
+}
+
+.upgrades-detail-img {
+  text-align: center;
+  background-color: var(--blue-baby);
+  padding: 1rem;
+}
+
+.upgrades-detail-img img {
+  height: 65px;
+}
+
+footer{
+  padding: 0.5rem;
+  font-weight: 400;
+  border-top: 2px solid var(--black);
+  text-align: center;
+  line-height: 1.2rem;
+}
+
+@media screen and (min-width: 400px){
+  .main-hero{
+    height: 350px;
+  }
+}
+
+@media screen and (min-width: 480px){
+  .main-hero{
+    height: 400px ;
+  }
+}
