@@ -39,6 +39,14 @@
     gap: 1rem;
   }
 
+  input {
+    width: 20%;
+  }
+  
+  .inputBtn {
+    width: 10%;
+  }
+
   .main-hero{
     height: 500px ;
   }

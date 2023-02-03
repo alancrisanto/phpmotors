@@ -1,4 +1,5 @@
 <?php 
+// this the main controller
   // Get the database connection file
   require_once 'library/connections.php';
     // Get the PHP Motors model for use as needed
