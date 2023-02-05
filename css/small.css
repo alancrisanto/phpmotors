@@ -80,7 +80,7 @@ form {
   flex: 1 1 auto;
 }
 
-input {
+input, select, textarea {
   height: 2rem;
   padding: 0.5rem;
   width: 100%;
@@ -175,6 +175,12 @@ main {
   height: 65px;
 }
 
+/* Vehicle management  */
+.vehicle-list li{
+  margin-left: 2rem;
+}
+/* End Vehicle management  */
+
 footer{
   padding: 0.5rem;
   font-weight: 400;
@@ -184,7 +190,7 @@ footer{
 }
 
 @media screen and (min-width: 3755px){
-  input {
+  input, select, textarea {
     width: 80%;
   }
   

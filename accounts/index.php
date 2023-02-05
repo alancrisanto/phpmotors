@@ -62,9 +62,5 @@
         exit;
       }
       break;
-    
-    default:
-    //   include 'view/login.php';
-      break;
     }
 ?>

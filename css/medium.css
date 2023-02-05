@@ -39,7 +39,7 @@
     gap: 1rem;
   }
 
-  input {
+  input, select, textarea {
     width: 20%;
   }
   
