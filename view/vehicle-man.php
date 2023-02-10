@@ -27,8 +27,8 @@
     <h1>Vehicle Managment</h1>
     <div>
       <ul class="vehicle-list">
-        <li><a href="../vehicles/?action=classification">Add Classification</a></li>
-        <li><a href="../vehicles/?action=vehicle">Add Vehicle</a></li>
+        <li><a href="/phpmotors/vehicles/index.php?action=classification">Add Classification</a></li>
+        <li><a href="/phpmotors/vehicles/index.php?action=vehicle">Add Vehicle</a></li>
       </ul>
     </div>
   </main>

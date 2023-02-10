@@ -7,12 +7,13 @@
   require_once '../model/main-model.php';
   // Get the vehicle model
   require_once '../model/vehicles-model.php';
-
-  // // Get the array of classifications
-  // $classifications = getClassifications();
-    
-  // // Build a navigation bar using the $classifications array
-  // $navList = navbar($classifications);
+  // get the functions
+  require_once '../model/functions.php';  
+  // Get the array of classifications
+  $classifications = getClassifications();
+  
+  // Create the navbar dinamically from the database
+  $navList = navbar($classifications);
 
 
   // This is the main controller
@@ -80,6 +81,9 @@
       exit;
     };
     break;
+    default:
+      include '../view/vehicle-man.php';
+      break;
   };
 
 ?>
