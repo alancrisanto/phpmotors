@@ -20,7 +20,7 @@
   <nav>
     <?php 
     //require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navbar.php'; 
-    echo $navList;
+      echo $navList;
     ?>
   </nav>
   <main>

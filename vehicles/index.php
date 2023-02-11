@@ -34,7 +34,7 @@
       $newClassification = filter_input(INPUT_POST, 'newClassification');
       // Check for missing data
       if (empty($newClassification)){
-        $message = '<p>Please provide information for all empty form fields.</p>';
+        $message = "<p class='error-msg'>Please provide information for all empty form fields.</p>";
         include '../view/add-classification.php';
         exit;
       }
@@ -43,10 +43,11 @@
 
       // Check and report the result
       if($regOutcome === 1){
-        include '../view/vehicle-man.php';
+        // include '../view/vehicle-man.php';
+        header("Location: /phpmotors/vehicles");
         exit;
       } else {
-        $message = "<p>Sorry, but the registration failed. Please try again.</p>";
+        $message = "<p class='error-msg'>Sorry, but the registration failed. Please try again.</p>";
         include '../view/add-classification.php';
         exit;
       }
@@ -63,24 +64,25 @@
       $vehicleStock = filter_input(INPUT_POST, 'vehicleStock');
       $vehicleColor = filter_input(INPUT_POST, 'vehicleColor');
 
-    if(empty($carClass) || empty($vehicleMake) || empty($vehicleModel) || empty($vehicleDescription) || empty($vehicleImagePath) || empty($vehicleThumbnail) || empty($vehiclePrice) || empty($vehicleStock) || empty($vehicleColor)){
-      $message = '<p>Please provide information for all empty form fields.</p>';
-      include '../view/add-vehicle.php';
-      exit; 
-    };
+      if(empty($carClass) || empty($vehicleMake) || empty($vehicleModel) || empty($vehicleDescription) || empty($vehicleImagePath) || empty($vehicleThumbnail) || empty($vehiclePrice) || empty($vehicleStock) || empty($vehicleColor)){
+        $message = "<p class='error-msg'>Please provide information for all empty form fields.</p>";
+        include '../view/add-vehicle.php';
+        exit; 
+      };
 
-    $regOutcome = newVehicle($vehicleMake, $vehicleModel, $vehicleDescription, $vehicleImagePath, $vehicleThumbnail, $vehiclePrice, $vehicleStock, $vehicleColor, $carClass);
+      $regOutcome = newVehicle($vehicleMake, $vehicleModel, $vehicleDescription, $vehicleImagePath, $vehicleThumbnail, $vehiclePrice, $vehicleStock, $vehicleColor, $carClass);
 
-    if($regOutcome === 1){
-      $message = "<p>Succes! Vehicle registration was confirmed</p>";
-      include '../view/vehicle-man.php';
-      exit;
-    } else {
-      $message = "<p>Sorry, but the registration failed. Please try again.</p>";
-      include '../view/add-vehicle.php';
-      exit;
-    };
-    break;
+      if($regOutcome === 1){
+        $message = "<p class='success-msg'>Succes! Vehicle registration was confirmed</p>";
+        include '../view/vehicle-man.php';
+        exit;
+      } else {
+        $message = "<p class='error-msg'>Sorry, but the registration failed. Please try again.</p>";
+        include '../view/add-vehicle.php';
+        exit;
+      };
+      break;
+
     default:
       include '../view/vehicle-man.php';
       break;
