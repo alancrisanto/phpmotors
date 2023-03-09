@@ -1,9 +1,9 @@
-<?php
-if ($_SESSION['clientData']['clientLevel'] < 2) {
-  header('location: /phpmotors/');
-  exit;
-}
+<?php 
+  if (!$_SESSION['loggedin']){
+      header('Location: /index.php');
+  }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,41 +26,39 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
   <nav>
     <?php 
     //require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/navbar.php'; 
-      echo $navList;
+    echo $navList;
     ?>
   </nav>
   <main>
-    <h1>Vehicle Managment</h1>
-    <?php
-      if (isset($message)) {
-          echo $message;
+  <h1>
+    <?php echo $_SESSION['clientData']['clientFirstname'].' '.$_SESSION['clientData']['clientLastname']; ?>
+  </h1>
+  <?php
+      if (isset($_SESSION['message'])) {
+          echo $_SESSION['message'];
       }
-    ?>
-    <div>
-      <ul class="vehicle-list">
-        <li><a href="/phpmotors/vehicles/index.php?action=classification">Add Classification</a></li>
-        <li><a href="/phpmotors/vehicles/index.php?action=vehicle">Add Vehicle</a></li>
-      </ul>
-    </div>
-    <br>
-    <?php
-      if (isset($message)) { 
-        echo $message; 
-      } 
-      if (isset($classificationList)) { 
-        echo '<h2>Vehicles By Classification</h2>'; 
-        echo '<p>Choose a classification to see those vehicles</p>'; 
-        echo $classificationList; 
-      }
-    ?>
-    <noscript>
-      <p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
-    </noscript>
-    <table id="inventoryDisplay"></table>
+  ?>
+  <br>
+  <p>You are logged in.</p>
+  <br>
+  <ul>
+      <li><?php echo "First Name: ".$_SESSION['clientData']['clientFirstname']; ?></li>
+      <li><?php echo "Last Name: ".$_SESSION['clientData']['clientLastname'] ?></li>
+      <li><?php echo "Email: ".$_SESSION['clientData']['clientEmail']; ?></li>
+  </ul>
+
+  <?php
+  if (intval($_SESSION['clientData']['clientLevel']) > 1){
+      echo "<br>";
+      echo "<h2 class>Inventory Management</h2>";
+      echo "<p>Use this link to manage the inventory</p>";
+      echo "<a href = '/phpmotors/vehicles/'>Vehicle Management</a>";
+  }
+  ?>
+
   </main>
   <footer>
   <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>
   </footer>
-  <script src="../js/inventory.js"></script>
 </body>
 </html>

@@ -5,8 +5,10 @@
 function phpmotorsConnect () {
   $server = 'localhost';
   $dbname = 'phpmotors';
-  $username = 'iClient';
-  $password = 'uZjhadSyiWoMpxbo';
+  $username = 'iclient';
+  $password = 'X3tegRgEVvzXi/E*';
+  // $password = '(pIYtuucd128K]v@';
+  // $password = 'uZjhadSyiWoMpxbo';
   $dsn = "mysql:host=$server;dbname=$dbname";
   $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 

@@ -27,17 +27,25 @@
     <h1>Sign In</h1>
     <div class="form-login">
     <?php
-    if (isset($message)) {
-    echo $message;
-    }
+      if (isset($message)) {
+          echo $message;
+      }
+      if (isset($_SESSION['message'])) {
+          echo $_SESSION['message'];
+      }
     ?>
-      <form>
+      <form action="/phpmotors/accounts/index.php" method="POST">
         <label for="clientEmail">Email</label>
-          <input name="clientEmail" id="clientEmail" type="email">
+        <input type="email" name="clientEmail" id="clientEmail" <?php if(isset($clientEmail)){echo "value='$clientEmail'";}?> required>
+
         <label for="clientPassword">Password</label>
-          <input name="clientPassword" id="clientPassword" type="password">
-          <br>
-          <input name="submitBtn" type="submit" class="inputBtn" value="Sign In" >
+        <span class="form-comment">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+        <input name="clientPassword" id="clientPassword" type="password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
+        <br>
+
+        <input name="submitBtn" type="submit" class="inputBtn" value="Sign In">
+        <input type="hidden" name="action" value="Login">
+
       </form>
     </div>
     <div>

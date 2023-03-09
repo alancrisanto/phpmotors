@@ -1,3 +1,8 @@
+<?php 
+if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] <= 1){
+    header('Location: /index.php/');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +36,9 @@
       ?>
     <form action="/phpmotors/vehicles/index.php" method="POST">
       <label for="newClassification">Classification Name</label>
-      <input type="text" name="newClassification" id="newClassification">
+      <span class="form-comment">Max characters 30</span>
+
+      <input type="text" name="newClassification" id="newClassification" <?php if(isset($newClassification)){echo "value='$newClassification'";}?> required>
       <br>
       <input type="submit" name="submit" value="Register" class="inputBtn">
       <input type="hidden" name="action" value="addClassification">
