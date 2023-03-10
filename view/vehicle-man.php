@@ -30,7 +30,7 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
     ?>
   </nav>
   <main>
-    <h1>Vehicle Managment</h1>
+    <h1>Vehicle Management</h1>
     <?php
       if (isset($message)) {
           echo $message;

@@ -37,12 +37,12 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] <= 1){
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap" rel="stylesheet">
   <title>
-  <?php 
-    if(isset($invInfo['invMake']) && isset($invInfo['invModel'])){ 
-		  echo "Modify $invInfo[invMake] $invInfo[invModel]";} 
-	  elseif(isset($invMake) && isset($invModel)) { 
-		echo "Modify $invMake $invModel"; }
-  ?>
+    <?php 
+      if(isset($invInfo['invMake']) && isset($invInfo['invModel'])){ 
+	      echo "Modify $invInfo[invMake] $invInfo[invModel]";} 
+	    elseif(isset($invMake) && isset($invModel)) { 
+	      echo "Modify $invMake $invModel"; }
+      ?> | PHP Motors
   </title>
 </head>
 <body>
@@ -58,10 +58,10 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] <= 1){
   <main>
     <h1>
       <?php 
-        if(isset($invInfo['vehicleMake']) && isset($invInfo['vehicleModel'])){ 
-          echo "Modify $invInfo[vehicleMake] $invInfo[vehicleModel]";} 
-        elseif(isset($vehicleMake) && isset($vehicleModel)) { 
-          echo "Modify$vehicleMake $vehicleModel"; }
+        if(isset($invInfo['invMake']) && isset($invInfo['invModel'])){ 
+	        echo "Modify $invInfo[invMake] $invInfo[invModel]";} 
+        elseif(isset($invMake) && isset($invModel)) { 
+	        echo "Modify$invMake $invModel"; }
       ?>
     </h1>
     <p>*Note all Fields are Required</p>
@@ -73,8 +73,9 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] <= 1){
 
     <form action="/phpmotors/vehicles/index.php" method="POST">
       <label for="carClass">Choose a classification</label>
-      
-
+      <?php
+        echo $classifList;
+      ?>
       <!-- <select id="carClass" name="carClass"> -->
 
       <label for="vehicleMake">Make</label>
