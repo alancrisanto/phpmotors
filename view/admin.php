@@ -55,7 +55,9 @@
       echo "<a href = '/phpmotors/vehicles/'>Vehicle Management</a>";
   }
   ?>
-
+  <h2>Account Management</h2>
+  <p>Use this link to update account information</p>
+  <p><a href = "../accounts/?action=updateAccountInfo">Update Account Information</a></p>
   </main>
   <footer>
   <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>

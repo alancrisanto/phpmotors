@@ -124,6 +124,56 @@ session_start();
       session_destroy();
       header('Location: /phpmotors');
       break;
+    case 'updateAccountInfo':
+      include '../view/client-update.php';
+      break;
+    case 'updateClient':
+        // Get the data from the view.
+        $firstName = filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING);
+        $lastName = filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING);
+        $newEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+        // Validate the new email.
+        $newEmail = checkEmail($newEmail);
+
+        // If email already exist, return client to update page.
+        if (checkExistingEmail($newEmail)){
+            $message = "<p class='error-msg'>Email already exist, please try a different one.</p>";
+            include '../view/client-update.php';
+            exit;
+        }
+
+        // Check that all the information is present.
+        if(empty($firstName) || empty($lastName) || empty($newEmail) || empty($invId)){
+            $message = "<p class='error-msg'>Please provide information for all empty form fields.</p>";
+            include '../view/client-update.php';
+            exit;
+        }
+
+        // Update the information in the database.
+        $resultPersonal = updatePersonal($firstName, $lastName, $newEmail, $invId);
+
+        // Query the client data based on the email address
+        $clientData = getClientId($invId);
+        array_pop($clientData);
+        // Store the array into the session
+        $_SESSION['clientData'] = $clientData;
+        
+        // Check and report the result
+        if($resultPersonal === 1){
+            $message = "<p class='success-msg'>The information was updated!</p>";
+            $_SESSION['message'] = $message;
+            header('location: ../accounts/');
+            exit;
+        } else {
+            $message = "<p class='error-msg'>Sorry, but information update failed. Please try again.</p>";
+            $_SESSION['message'] = $message;
+	        header('location: ../accounts/');
+	        exit;
+        }
+        break;
+    
     default:
       include '../view/admin.php';
       break;

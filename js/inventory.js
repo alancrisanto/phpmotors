@@ -40,5 +40,5 @@ function buildInventoryList(data) {
   }) 
   dataTable += '</tbody>'; 
   // Display the contents in the Vehicle Management view 
-  inventoryDisplay.innerHTML = dataTable; 
+  inventoryDisplay.innerHTML = dataTable;
 }

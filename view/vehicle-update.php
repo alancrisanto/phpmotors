@@ -95,7 +95,7 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] <= 1){
       <label for="vehicleColor">Color</label>
       <input type="text" name="vehicleColor" id="vehicleColor" required <?php if(isset($color)){echo "value='$color'";} elseif(isset($invInfo['invColor'])) {echo "value='$invInfo[invColor]'"; } ?>>
 
-      <input type="submit" name="submit" value="Update Vehicle" class="inputBtn">
+      <input type="submit" name="submit" value="Update Vehicle" class="inputBtn updateBtn">
       <input type="hidden" name="action" value="updateVehicle">
       <input type="hidden" name="invId" value="<?php if(isset($invInfo['invId'])){ echo $invInfo['invId'];} elseif(isset($invId)){ echo $invId; } ?>">
     </form>

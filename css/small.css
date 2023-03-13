@@ -103,7 +103,13 @@ main {
   border-radius: 5px;
   padding: 0.5rem;
   margin-top: 1rem;
-  width: 50%;
+  width: 100%;
+}
+
+.deleteBtn {
+  background-color: var(--red);
+  color: var(--white);
+
 }
 
 .main-hero{
@@ -198,6 +204,14 @@ main {
 .success-msg {
   color: var(--green);
   background-color: var(--green-success);
+  padding: 0.5rem;
+  max-width: 50%;
+  margin: 1rem 0;
+}
+
+.warning-msg {
+  color: var(--blue);
+  background-color: var(--blue-baby);
   padding: 0.5rem;
   max-width: 50%;
   margin: 1rem 0;

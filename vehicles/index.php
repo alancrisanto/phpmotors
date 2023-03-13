@@ -143,6 +143,35 @@ session_start();
         exit;
       };
       break;
+      case 'del':
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+        $invInfo = getInvItemInfo($invId);
+        if (count($invInfo) < 1) {
+            $message = 'Sorry, no vehicle information could be found.';
+          }
+          include '../view/vehicle-delete.php';
+          exit;
+          break;
+    case 'deleteVehicle':
+      $make = filter_input(INPUT_POST, 'make', FILTER_SANITIZE_STRING);
+        $model = filter_input(INPUT_POST, 'model', FILTER_SANITIZE_STRING);
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+        // Add Data to database
+        $deleteResult = deleteVehicle($invId);
+        // Check and report the result
+        if($deleteResult === 1){
+            $message = "<p class='success-msg'>Congratulations the, $invMake $invModel was	successfully deleted.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/vehicles/');
+            exit;
+        } else {
+            $message = "<p class='error-msg'>Error: $invMake $invModel was not deleted.</p>";
+            $_SESSION['message'] = $message;
+	        header('location: /phpmotors/vehicles/');
+	        exit;
+        }
+      break;
     default:
       $classificationList = buildClassificationList($classifications);
       include '../view/vehicle-man.php';
