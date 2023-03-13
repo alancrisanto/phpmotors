@@ -41,7 +41,7 @@
   <br>
   <p>You are logged in.</p>
   <br>
-  <ul>
+  <ul class="client-info">
       <li><?php echo "First Name: ".$_SESSION['clientData']['clientFirstname']; ?></li>
       <li><?php echo "Last Name: ".$_SESSION['clientData']['clientLastname'] ?></li>
       <li><?php echo "Email: ".$_SESSION['clientData']['clientEmail']; ?></li>

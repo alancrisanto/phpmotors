@@ -47,9 +47,9 @@
         Passwords must be at least 8 characters and contain at least 1
         number, 1 capital letter, and 1 special character.
     </p>
-    <form action="/accounts/index.php" method="POST">
-        <label for="clientPassword">New Password</label>
-        <input name="clientPassword" id="clientPassword" type="password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+    <form action="../accounts/index.php" method="POST">
+        <label for="newPassword">New Password</label>
+        <input name="newPassword" id="newPassword" type="password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
         <br>
         <input type="submit" name="submit" value="Update Password" class="inputBtn">
         <input type="hidden" name="action" value="updatePassword">

@@ -59,7 +59,7 @@ nav .nav-ul {
   gap: 0.5rem;
 }
 
-nav li{
+nav li  {
   list-style: none;
 }
 
@@ -215,6 +215,11 @@ main {
   padding: 0.5rem;
   max-width: 50%;
   margin: 1rem 0;
+}
+
+.client-info{
+  padding-left: 2rem;
+  padding-bottom: 1rem;
 }
 
 /* input:required:valid {
