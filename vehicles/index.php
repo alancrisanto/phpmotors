@@ -112,9 +112,39 @@ session_start();
       include '../view/vehicle-update.php';
       exit;
       break;
+    case 'updateVehicle':
+      $carClass = trim(filter_input(INPUT_POST, 'carClass', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $vehicleMake = trim(filter_input(INPUT_POST, 'vehicleMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $vehicleModel = trim(filter_input(INPUT_POST, 'vehicleModel', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $vehicleDescription = trim(filter_input(INPUT_POST, 'vehicleDescription', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $vehicleImagePath = trim(filter_input(INPUT_POST, 'vehicleImagePath', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $vehicleThumbnail = trim(filter_input(INPUT_POST, 'vehicleThumbnail', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $vehiclePrice = trim(filter_input(INPUT_POST, 'vehiclePrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION));
+      $vehicleStock = trim(filter_input(INPUT_POST, 'vehicleStock', FILTER_SANITIZE_NUMBER_INT));
+      $vehicleColor = trim(filter_input(INPUT_POST, 'vehicleColor', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+      $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
 
+      if(empty($carClass) || empty($vehicleMake) || empty($vehicleModel) || empty($vehicleDescription) || empty($vehicleImagePath) || empty($vehicleThumbnail) || empty($vehiclePrice) || empty($vehicleStock) || empty($vehicleColor)){
+        $message = "<p class='error-msg'>Please complete all information for the updated item! Double check the classification of the item.</p>";
+        include '../view/vehicle-update.php';
+        exit; 
+      };
+
+      $$updateResult = updateVehicle($vehicleMake, $vehicleModel, $vehicleDescription, $vehicleImagePath, $vehicleThumbnail, $vehiclePrice, $vehicleStock, $vehicleColor, $carClass, $invId);
+
+      if($$updateResult == 1){
+        $message = "<p class='success-msg'>Congratulations, the $vehicleMake $vehicleModel was successfully updated.</p>";
+        $_SESSION['message'] = $message;
+        header('location: /phpmotors/vehicles/');
+        exit;
+      } else {
+        $message = "<p class='error-msg'>Error. The vehicle update was not possible.</p>";
+        include '../view/vehicle-update.php';
+        exit;
+      };
+      break;
     default:
-    $classificationList = buildClassificationList($classifications);
+      $classificationList = buildClassificationList($classifications);
       include '../view/vehicle-man.php';
       break;
   };
