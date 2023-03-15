@@ -30,7 +30,7 @@ session_start();
   }
 
   switch ($action) {
-    case 'classification':
+    case 'newClassification':
       include "../view/add-classification.php";
       break;
     case 'vehicle':
@@ -99,7 +99,7 @@ session_start();
       $classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT); 
       // Fetch the vehicles by classificationId from the DB 
       $inventoryArray = getInventoryByClassification($classificationId); 
-      // Convert the array to a JSON object and send it back 
+        // Convert the array to a JSON object and send it back 
       echo json_encode($inventoryArray); 
       break;
     
@@ -166,12 +166,36 @@ session_start();
             header('location: /phpmotors/vehicles/');
             exit;
         } else {
-            $message = "<p class='error-msg'>Error: $invMake $invModel was not deleted.</p>";
-            $_SESSION['message'] = $message;
+          $message = "<p class='error-msg'>Error: $invMake $invModel was not deleted.</p>";
+          $_SESSION['message'] = $message;
 	        header('location: /phpmotors/vehicles/');
 	        exit;
         }
       break;
+    case 'classification':
+      $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+      $vehicles = getVehiclesByClassification($classificationName);
+      if(!count($vehicles)){
+        $message = "<p class='notice'>Sorry, no $classificationName could be found.</p>";
+      } else {
+        $vehicleDisplay = buildVehiclesDisplay($vehicles);
+      }
+      // echo $vehicleDisplay;
+      // exit;
+      include '../view/classification.php';
+      break;
+    case 'vehicleDetail':
+      $vehicleId = filter_input(INPUT_GET, 'vehicle', FILTER_SANITIZE_NUMBER_INT);
+      $vehicleDetail = getVehiclesById($vehicleId);
+      json_encode($vehicleDetail);
+      if(!count($vehicleDetail)){
+        $message = "<p class='notice'>Sorry, no data could be found.</p>";
+      } else {
+        $vehicleDisplayDetail = buildVehiclesDetail($vehicleDetail);
+      }
+      include '../view/vehicle-detail.php';
+      break;
+      // include '../view/vehicle-detail.php';
     default:
       $classificationList = buildClassificationList($classifications);
       include '../view/vehicle-man.php';

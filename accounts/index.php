@@ -89,7 +89,7 @@ session_start();
       
       // Run basic checks, return if errors
       if (empty($clientEmail) || empty($passwordCheck)) {
-        $message = '<p class="notice">Please provide a valid email address and password.</p>';
+        $message = "<p class='error-msg'>Please provide a valid email address and password.</p>";
         include '../view/login.php';
         exit;
       }
@@ -103,7 +103,7 @@ session_start();
       // If the hashes don't match create an error
       // and return to the login view
       if(!$hashCheck) {
-        $message = '<p class="notice">Please check your password and try again.</p>';
+        $message = "<p class='error-msg'>Please check your password and try again.</p>";
         include '../view/login.php';
         exit;
       }

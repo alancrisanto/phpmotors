@@ -20,7 +20,7 @@ function navbar ($classifications){
   $navList = '<ul class="nav-ul">';
   $navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
   foreach ($classifications as $classification) {
-    $navList .= "<li><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
+    $navList .= "<li><a href='/phpmotors/vehicles/index.php?action=classification&classificationName=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
   };
   $navList .= '</ul>';
 
@@ -38,4 +38,31 @@ function buildClassificationList($classifications){
   return $classificationList; 
 }
 
+function buildVehiclesDisplay($vehicles){
+  $dv = '<ul id="inv-display">';
+  foreach ($vehicles as $vehicle) {
+  $dv .= '<li>';
+  $dv .= "<a href='/phpmotors/vehicles/index.php?action=vehicleDetail&vehicle=$vehicle[invId]'><img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a>";
+  $dv .= '<hr>';
+  $dv .= "<a href='/phpmotors/vehicles/index.php?action=vehicleDetail&vehicle=$vehicle[invId]'>$vehicle[invMake] $vehicle[invModel]</a>";
+  $dv .= "<span>$vehicle[invPrice]</span>";
+  $dv .= '</li>';
+  }
+  $dv .= '</ul>';
+  return $dv;
+}
+
+function buildVehiclesDetail($vehicleDetail){
+  $dv = "<section class ='car-details'>";
+  // foreach ($vehicleDetail as $vehicle){
+  $dv .= "<img src='$vehicleDetail[invImage]' alt='$vehicleDetail[invMake]-$vehicleDetail[invModel]'>";
+  $dv .= '<h2>Price: $'.number_format($vehicleDetail['invPrice']).'</h2>';
+  $dv .= "<h2>$vehicleDetail[invMake] $vehicleDetail[invModel] Details</h2>";
+  $dv .= "<p>$vehicleDetail[invDescription]</p>";
+  $dv .= "<p>Color: $vehicleDetail[invColor]</p>";
+  $dv .= "<p>Number in Stock: $vehicleDetail[invStock]</p>";
+  // }
+  $dv .= '</section>';
+  return $dv;
+}
 ?>
