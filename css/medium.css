@@ -55,7 +55,7 @@
   /* For vehicle display in classification view */
   #inv-display {
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   #inv-display h2{
@@ -74,6 +74,12 @@
       
   #inv-display div {
     width: 100%;
+  }
+
+  .car-details{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
 }
 

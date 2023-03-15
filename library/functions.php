@@ -54,14 +54,14 @@ function buildVehiclesDisplay($vehicles){
 
 function buildVehiclesDetail($vehicleDetail){
   $dv = "<section class ='car-details'>";
-  // foreach ($vehicleDetail as $vehicle){
   $dv .= "<img src='$vehicleDetail[invImage]' alt='$vehicleDetail[invMake]-$vehicleDetail[invModel]'>";
-  $dv .= '<h2>Price: $'.number_format($vehicleDetail['invPrice']).'</h2>';
-  $dv .= "<h2>$vehicleDetail[invMake] $vehicleDetail[invModel] Details</h2>";
+  $dv .= "<div class='car-info'>";
+  $dv .= "<h1>$vehicleDetail[invMake] $vehicleDetail[invModel] Details</h1>";
+  $dv .= "<h2>Price: $$vehicleDetail[invPrice]</h2>";
   $dv .= "<p>$vehicleDetail[invDescription]</p>";
   $dv .= "<p>Color: $vehicleDetail[invColor]</p>";
   $dv .= "<p>Number in Stock: $vehicleDetail[invStock]</p>";
-  // }
+  $dv .= "</div>";
   $dv .= '</section>';
   return $dv;
 }
