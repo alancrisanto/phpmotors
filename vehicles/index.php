@@ -176,7 +176,7 @@ session_start();
       $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
       $vehicles = getVehiclesByClassification($classificationName);
       if(!count($vehicles)){
-        $message = "<p class='notice'>Sorry, no $classificationName could be found.</p>";
+        $message = "<p class='error-msg'>Sorry, no $classificationName could be found.</p>";
       } else {
         $vehicleDisplay = buildVehiclesDisplay($vehicles);
       }
@@ -189,7 +189,7 @@ session_start();
       $vehicleDetail = getVehiclesById($vehicleId);
       json_encode($vehicleDetail);
       if(!count($vehicleDetail)){
-        $message = "<p class='notice'>Sorry, no data could be found.</p>";
+        $message = "<p class='error-msg'>Sorry, no data could be found.</p>";
       } else {
         $vehicleDisplayDetail = buildVehiclesDetail($vehicleDetail);
       }
