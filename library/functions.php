@@ -228,7 +228,7 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
 function displayThumbnailView($thumbnailList){
   $dv = "<div class='Vehicle-thumbnails'>";
   foreach ($thumbnailList as $thumbnail) {
-      $dv .= "<img src='$thumbnail[imgPath]' alt='$thumbnail[imgName]'>";
+      $dv .= "<img src='$thumbnail[imgPath]' alt='$thumbnail[imgName] image'>";
   }
   $dv .= "</div>";
   return $dv;
