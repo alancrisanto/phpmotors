@@ -122,7 +122,7 @@ main {
   display: flex;
   flex-direction: column;
   padding: 0 1rem;
-  background-image: url(/phpmotors/images/delorean.jpg);
+  background-image: url(/phpmotors/uploads/images/vehicles/delorean.jpg);
   background-repeat: no-repeat;
   background-position: right;
   background-size: contain;
@@ -290,6 +290,8 @@ main {
 /* ##### CARD DETAIL ###### */
 
 .car-details{
+  display: flex;
+  flex-direction: column-reverse;
   text-align: center;
   margin: 1rem;
 }
@@ -308,6 +310,19 @@ main {
   margin-bottom: 1rem;
 }
 
+.Vehicle-thumbnails{
+  display: flex;
+  justify-content: center;
+}
+
+.Vehicle-thumbnails img{
+  object-fit: contain;
+  max-width: 35%;
+}
+
+.Vehicle-thumbnails img:hover{
+  transform: scale(2);
+}
 
 footer{
   padding: 0.5rem;

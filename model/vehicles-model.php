@@ -119,7 +119,15 @@ function deleteVehicle($invId) {
 
 function getVehiclesByClassification($classificationName){
   $db = phpmotorsConnect();
-  $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+  // $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+  $sql = "SELECT * 
+          FROM images 
+          INNER JOIN inventory ON inventory.invId = images.invId 
+          INNER JOIN carclassification ON carclassification.classificationId = inventory.classificationId 
+          WHERE carclassification.classificationName = :classificationName 
+          AND images.imgPath LIKE '%-tn%' 
+          AND images.imgPrimary = 1;
+          ";
   $stmt = $db->prepare($sql);
   $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
   $stmt->execute();
@@ -130,7 +138,13 @@ function getVehiclesByClassification($classificationName){
 
 function getVehiclesById($vehicleId){
   $db = phpmotorsConnect();
-  $sql = 'SELECT * FROM inventory WHERE invId = :vehicleId';
+  // $sql = 'SELECT * FROM inventory WHERE invId = :vehicleId';
+  // Obtain the inventory information and replace the invImage with the path of imagPath from the images table, excluding the thumbails that have -tn
+  $sql = "SELECT invID, invMake, invDescription, invModel, invColor, invStock, 
+          (SELECT imgPath FROM images WHERE invId = :vehicleId AND imgPrimary = 1 AND imgName NOT LIKE '%-tn%') AS invImage, 
+          invPrice 
+          FROM inventory;
+          ";
   $stmt = $db->prepare($sql);
   $stmt->bindValue(':vehicleId', $vehicleId, PDO::PARAM_INT);
   $stmt->execute();

@@ -30,7 +30,10 @@
       }
     ?>
     <?php
-      echo $vehicleDisplayDetail
+      // echo $vehicleDetailThumbnail;
+    ?>
+    <?php
+      echo $vehicleDisplayDetail;
     ?>
   </main>
   <footer>

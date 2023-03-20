@@ -52,8 +52,10 @@ function buildVehiclesDisplay($vehicles){
   return $dv;
 }
 
-function buildVehiclesDetail($vehicleDetail){
+function buildVehiclesDetail($vehicleDetail, $thumbnailView){
   $dv = "<section class ='car-details'>";
+  $dv .= "$thumbnailView";
+  $dv .= "<div class ='details'>";
   $dv .= "<img src='$vehicleDetail[invImage]' alt='$vehicleDetail[invMake]-$vehicleDetail[invModel]'>";
   $dv .= "<div class='car-info'>";
   $dv .= "<h1>$vehicleDetail[invMake] $vehicleDetail[invModel] Details</h1>";
@@ -61,6 +63,7 @@ function buildVehiclesDetail($vehicleDetail){
   $dv .= "<p>$vehicleDetail[invDescription]</p>";
   $dv .= "<p>Color: $vehicleDetail[invColor]</p>";
   $dv .= "<p>Number in Stock: $vehicleDetail[invStock]</p>";
+  $dv .= "</div>";
   $dv .= "</div>";
   $dv .= '</section>';
   return $dv;
@@ -221,4 +224,13 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
    // Free any memory associated with the old image
   imagedestroy($old_image);
 } // ends resizeImage function
+
+function displayThumbnailView($thumbnailList){
+  $dv = "<div class='Vehicle-thumbnails'>";
+  foreach ($thumbnailList as $thumbnail) {
+      $dv .= "<img src='$thumbnail[imgPath]' alt='$thumbnail[imgName]'>";
+  }
+  $dv .= "</div>";
+  return $dv;
+}
 ?>

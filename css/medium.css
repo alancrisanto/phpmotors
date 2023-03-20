@@ -78,8 +78,19 @@
 
   .car-details{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 20% 1fr;
     gap: 1rem;
+  }
+
+  .Vehicle-thumbnails{
+    flex-direction: column;
+    flex-wrap:wrap;
+    align-content: center;
+    justify-content: start;
+  }
+
+  .Vehicle-thumbnails img{
+    max-width: 100%;
   }
 }
 

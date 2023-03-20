@@ -15,6 +15,8 @@ session_start();
   require_once '../model/vehicles-model.php';
   // Get the functions library
   require_once '../library/functions.php';
+  // get the upload model
+  require_once '../model/uploads-model.php';
   
   // Get the array of classifications
   $classifications = getClassifications();
@@ -187,11 +189,15 @@ session_start();
     case 'vehicleDetail':
       $vehicleId = filter_input(INPUT_GET, 'vehicle', FILTER_SANITIZE_NUMBER_INT);
       $vehicleDetail = getVehiclesById($vehicleId);
-      json_encode($vehicleDetail);
+      $vehicleThumbnailPath = getThumbnails($vehicleId);
+      
+
+      // json_encode($vehicleDetail); //comenté esta línea y el código funciona normal
       if(!count($vehicleDetail)){
         $message = "<p class='error-msg'>Sorry, no data could be found.</p>";
       } else {
-        $vehicleDisplayDetail = buildVehiclesDetail($vehicleDetail);
+        $vehicleDetailThumbnail = displayThumbnailView($vehicleThumbnailPath);
+        $vehicleDisplayDetail = buildVehiclesDetail($vehicleDetail, $vehicleDetailThumbnail);
       }
       include '../view/vehicle-detail.php';
       break;
