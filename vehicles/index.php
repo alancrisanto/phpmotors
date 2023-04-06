@@ -17,6 +17,8 @@ session_start();
   require_once '../library/functions.php';
   // get the upload model
   require_once '../model/uploads-model.php';
+  // Get the reviews model
+  require_once '../model/review-model.php';
   
   // Get the array of classifications
   $classifications = getClassifications();
@@ -190,7 +192,14 @@ session_start();
       $vehicleId = filter_input(INPUT_GET, 'vehicle', FILTER_SANITIZE_NUMBER_INT);
       $vehicleDetail = getVehiclesById($vehicleId);
       $vehicleThumbnailPath = getThumbnails($vehicleId);
-      
+      $reviewList = getInventoryReviews($vehicleId);
+
+      // Build the html for the review list.
+      $reviewHTML = '<div class = "reviews">';
+      foreach($reviewList as $review){
+          $reviewHTML .= buildReview($review['clientFirstname'], $review['clientLastname'], $review['reviewDate'], $review['reviewText']);
+      }
+      $reviewHTML .= "</div>";
 
       // json_encode($vehicleDetail); //comenté esta línea y el código funciona normal
       if(!count($vehicleDetail)){

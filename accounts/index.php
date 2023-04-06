@@ -14,6 +14,8 @@ session_start();
   require_once '../model/accounts-model.php';
   // get the functions library
   require_once '../library/functions.php';
+  // get the reviews model
+  require_once '../model/review-model.php';
 
   // Get the array of classifications
   $classifications = getClassifications();
@@ -115,6 +117,14 @@ session_start();
       array_pop($clientData);
       // Store the array into the session
       $_SESSION['clientData'] = $clientData;
+
+       // Reviews.
+      $reviewList = getClientReviews($_SESSION['clientData']['clientId']);
+      $reviewHTML = '<ul>';
+      foreach($reviewList as $review){
+          $reviewHTML .= buildReviewItem($review['reviewDate'], $review['reviewId']);
+      }
+      $reviewHTML .= '</ul>';
       // Send them to the admin view
       include '../view/admin.php';
       exit;
@@ -209,6 +219,13 @@ session_start();
       }
       break;
     default:
+      // Get Reviews
+      $reviewList = getClientReviews($_SESSION['clientData']['clientId']);
+      $reviewHTML = '<ul>';
+      foreach($reviewList as $review){
+          $reviewHTML .= buildReviewItem($review['reviewDate'], $review['reviewId']);
+      }
+      $reviewHTML .= '</ul>';
       include '../view/admin.php';
       break;
   };

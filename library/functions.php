@@ -233,4 +233,25 @@ function displayThumbnailView($thumbnailList){
   $dv .= "</div>";
   return $dv;
 }
+
+function buildReview($clientFirstName, $clientLastName, $date, $reviewText){
+  $htmlText = "<div class='review-detail'>";
+  $timestamp = strtotime($date);
+  $htmlText .= "<p>".$reviewText."</p>";
+  $htmlText .= "<p>".substr($clientFirstName, 0, 1).". ".$clientLastName." Wrote on: ".date('d, F, Y', $timestamp)."</p>";
+  $htmlText .= "</div>";
+  return $htmlText;
+}
+
+// The function builds a block of html for the review list.
+function buildReviewItem($reviewDate, $reviewId) {
+  $htmlText = '<li>';
+  $timestamp = strtotime($reviewDate);
+  $htmlText .= 'Review Created on: '.date('d, F, Y', $timestamp);
+  $htmlText .= ' <a href = "/phpmotors/reviews/index.php?action=confirmEdit&review='.$reviewId.'" class="inputBtn edit-btn">Edit</a>';
+  $htmlText .= ' | ';
+  $htmlText .= '<a href = "/phpmotors/reviews/index.php?action=confirmDelete&review='.$reviewId.'" class="inputBtn del-btn">Delete</a>';
+  $htmlText .= '</li>';
+  return $htmlText;
+}
 ?>

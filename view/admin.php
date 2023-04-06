@@ -38,7 +38,6 @@
           echo $_SESSION['message'];
       }
   ?>
-  <br>
   <p>You are logged in.</p>
   <br>
   <ul class="client-info">
@@ -58,6 +57,12 @@
   <h2>Account Management</h2>
   <p>Use this link to update account information</p>
   <p><a href = "../accounts/?action=updateAccountInfo">Update Account Information</a></p>
+  <hr>
+  <div class="user_reviews">
+    <h3>Your Reviews</h3>
+    <?php echo $reviewHTML; ?>
+  </div>
+
   </main>
   <footer>
   <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>
